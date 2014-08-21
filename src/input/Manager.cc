@@ -2288,8 +2288,11 @@ Val* Manager::ValueToVal(const Value* val, BroType* request_type)
 		// but well.
 		bro_int_t index = request_type->AsEnumType()->Lookup(module, var.c_str());
 		if ( index == -1 )
-			reporter->InternalError("Value not found in enum mappimg. Module: %s, var: %s, var size: %zu",
-			                        module.c_str(), var.c_str(), var.size());
+			{
+			reporter->Error("Enum value could not be resolved while reading input file. Value: %s::%s",
+			                        module.c_str(), var.c_str());
+			return 0;
+			}
 
 		return new EnumVal(index, request_type->Ref()->AsEnumType());
 		}

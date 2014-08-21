@@ -1,0 +1,3 @@
+error: Enum value could not be resolved while reading input file. Skipping line. Value: IdoNot::Exist
+internal warning in /Users/johanna/bro/master/testing/btest/.tmp/scripts.base.frameworks.input.missing-enum/missing-enum.bro, line 19: bad set/table in TableVal::Assign ({})
+received termination signal
