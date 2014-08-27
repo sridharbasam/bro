@@ -1,6 +1,15 @@
+# First, we expect to see a server greeting (220)
+signature dpd_ftp_server_greeting {
+  ip-proto == tcp
+  payload /[\n\r ]*220[^0-9].*[\n\r]/
+  tcp-state responder
+}
+
+# Then we send USER
 signature dpd_ftp_client {
   ip-proto == tcp
   payload /(|.*[\n\r]) *[uU][sS][eE][rR] /
+  requires-reverse-signature dpd_ftp_server_greeting
   tcp-state originator
 }
 
@@ -13,3 +22,4 @@ signature dpd_ftp_server {
   requires-reverse-signature dpd_ftp_client
   enable "ftp"
 }
+
