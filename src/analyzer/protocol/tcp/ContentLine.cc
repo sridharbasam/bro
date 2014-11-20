@@ -87,7 +87,8 @@ void ContentLine_Analyzer::DeliverStream(int len, const u_char* data,
 		TCP_Analyzer* tcp =
 			static_cast<TCP_ApplicationAnalyzer*>(Parent())->TCP();
 
-		if ( tcp && tcp->IsPartial() )
+                // Deliver partial streams too 
+		if ( tcp && tcp->IsPartial() && 0)
 			return;
 		}
 
