@@ -876,7 +876,8 @@ void HTTP_Analyzer::DeliverStream(int len, const u_char* data, bool is_orig)
 	{
 	tcp::TCP_ApplicationAnalyzer::DeliverStream(len, data, is_orig);
 
-	if ( TCP() && TCP()->IsPartial() )
+        // enable delivery of partial streams too 
+	if ( TCP() && TCP()->IsPartial() && 0)
 		return;
 
 	if ( pia )
